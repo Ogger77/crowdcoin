@@ -1,11 +1,12 @@
-const HDWalletProvider = require("truffle-hdwallet-provider");
+require("dotenv").config();
+
+const HDWalletProvider = require("@truffle/hdwallet-provider");
 const Web3 = require("web3");
 const compiledFactory = require("./build/CampaignFactory.json");
+const mnemonic = process.env.ACCOUNT_MNEMONIC;
+const network = process.env.RINKEBY_ENDPOINT;
 
-const provider = new HDWalletProvider(
-  "field cupboard suffer skate found practice pride spy sponsor puppy choice dolphin",
-  "https://rinkeby.infura.io/v3/76435f6872644b539fbbbfc31dfe4354"
-);
+const provider = new HDWalletProvider(mnemonic, network);
 
 const web3 = new Web3(provider);
 
@@ -13,13 +14,12 @@ const deploy = async () => {
   const accounts = await web3.eth.getAccounts();
   console.log("Attempting to deploy from account: ", accounts[0]);
 
-  const result = await new web3.eth.Contract(
-    JSON.parse(compiledFactory.interface)
-  )
-    .deploy({ data: compiledFactory.bytecode })
-    .send({ gas: "1000000", from: accounts[0] });
+  const result = await new web3.eth.Contract(compiledFactory.abi)
+    .deploy({ data: "0x" + compiledFactory.evm.bytecode.object })
+    .send({ from: accounts[0] });
 
   console.log("Contract deployed to: ", result.options.address);
+  provider.engine.stop();
 };
 
 deploy();

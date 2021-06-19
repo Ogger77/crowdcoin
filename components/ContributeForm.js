@@ -1,8 +1,8 @@
 import React, { Component } from "react";
+import Router from "next/router";
 import { Form, Input, Message, Button } from "semantic-ui-react";
 import Campaign from "../ethereum/campaign";
 import web3 from "../ethereum/web3";
-import { Router } from "../routes";
 
 class ContributionForm extends Component {
   state = {
@@ -23,7 +23,10 @@ class ContributionForm extends Component {
         value: web3.utils.toWei(this.state.value, "ether"),
       });
 
-      Router.replaceRoute(`/campaigns/${this.props.address}`);
+      Router.replace(
+        "/campaigns/[campaign]",
+        `/campaigns/${this.props.address}`
+      );
     } catch (err) {
       this.setState({ errorMessage: err.message });
     }

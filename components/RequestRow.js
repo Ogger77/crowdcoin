@@ -1,25 +1,57 @@
 import React, { Component } from "react";
+import Router from "next/router";
 import { Table, Button } from "semantic-ui-react";
 import web3 from "../ethereum/web3";
 import Campaign from "../ethereum/campaign";
 
 class RequestRow extends Component {
-  onApprove = async () => {
-    const campaign = Campaign(this.props.address);
-
-    const accounts = await web3.eth.getAccounts();
-    await campaign.methods
-      .approveRequest(this.props.id)
-      .send({ from: accounts[0] });
+  state = {
+    value: "",
+    errorMessage: "",
+    loading: false,
   };
 
-  onFinalize = async () => {
-    const campaign = Campaign(this.props.address);
+  onApprove = async (event) => {
+    event.preventDefault();
 
-    const accounts = await web3.eth.getAccounts();
-    await campaign.methods
-      .finalizeRequest(this.props.id)
-      .send({ from: accounts[0] });
+    const campaign = Campaign(this.props.address);
+    this.setState({ loading: true, errorMessage: "" });
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await campaign.methods
+        .approveRequest(this.props.id)
+        .send({ from: accounts[0] });
+      Router.replace(
+        "/campaigns/[campaign]/requests",
+        `/campaigns/${this.props.address}/requests`
+      );
+    } catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
+
+    this.setState({ loading: false, value: "" });
+  };
+
+  onFinalize = async (event) => {
+    event.preventDefault();
+
+    const campaign = Campaign(this.props.address);
+    this.setState({ loading: true, errorMessage: "" });
+    try {
+      const accounts = await web3.eth.getAccounts();
+      await campaign.methods
+        .finalizeRequest(this.props.id)
+        .send({ from: accounts[0] });
+
+      Router.replace(
+        "/campaigns/[campaign]/requests",
+        `/campaigns/${this.props.address}/requests`
+      );
+    } catch (err) {
+      this.setState({ errorMessage: err.message });
+    }
+
+    this.setState({ loading: false, value: "" });
   };
 
   render() {
@@ -31,6 +63,7 @@ class RequestRow extends Component {
       <Row
         disabled={request.complete}
         positive={readyToFinalize && !request.complete}
+        error={!!this.state.errorMessage}
       >
         <Cell>{id}</Cell>
         <Cell>{request.description}</Cell>
@@ -41,14 +74,24 @@ class RequestRow extends Component {
         </Cell>
         <Cell>
           {request.complete ? null : (
-            <Button color="green" basic onClick={this.onApprove}>
+            <Button
+              color="green"
+              basic
+              loading={this.state.loading}
+              onClick={this.onApprove}
+            >
               Approve
             </Button>
           )}
         </Cell>
         <Cell>
           {request.complete ? null : (
-            <Button color="teal" basic onClick={this.onFinalize}>
+            <Button
+              color="teal"
+              basic
+              loading={this.state.loading}
+              onClick={this.onFinalize}
+            >
               Finalize
             </Button>
           )}
