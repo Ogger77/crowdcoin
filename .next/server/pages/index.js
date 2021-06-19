@@ -133,7 +133,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_3__);
 
-var _jsxFileName = "C:\\Users\\VuDin\\Desktop\\solidity\\kickstart\\components\\header.js";
+var _jsxFileName = "C:\\Users\\VuDin\\Desktop\\Course\\solidity\\kickstart\\components\\header.js";
 
 
 
@@ -223,7 +223,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! next/head */ "next/head");
 /* harmony import */ var next_head__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(next_head__WEBPACK_IMPORTED_MODULE_4__);
 
-var _jsxFileName = "C:\\Users\\VuDin\\Desktop\\solidity\\kickstart\\components\\layout.js";
+var _jsxFileName = "C:\\Users\\VuDin\\Desktop\\Course\\solidity\\kickstart\\components\\layout.js";
 
 
 
@@ -3191,7 +3191,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! next/link */ "./node_modules/next/link.js");
 /* harmony import */ var next_link__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(next_link__WEBPACK_IMPORTED_MODULE_5__);
 
-var _jsxFileName = "C:\\Users\\VuDin\\Desktop\\solidity\\kickstart\\pages\\index.js";
+var _jsxFileName = "C:\\Users\\VuDin\\Desktop\\Course\\solidity\\kickstart\\pages\\index.js";
 
 
 
