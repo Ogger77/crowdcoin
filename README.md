@@ -4,8 +4,8 @@
 ![Build Status](http://img.shields.io/travis/badges/badgerbadgerbadger.svg?style=flat-square)
 ![version](https://img.shields.io/badge/version-2.0.0-blue?style=flat-square)
 
-A kickstarter web demo that using ethereum as a currency of donating money.
-User can use their ether coin to donate as well as authorize the distribution of the funds.
+A kickstarter web demo that using ethereum as a currency of donating money.    
+User can use their ether coin to donate as well as authorize the distribution of the funds.  
 Based on a tutorial of Stephen Grider
 
 ## Getting Started
